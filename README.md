@@ -78,7 +78,7 @@ password-toolkit/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-username>/password-toolkit.git
+git clone https://github.com/Dev9269/password-cracker-toolkit.git
 cd password-toolkit
 
 # 2. Install dependencies
