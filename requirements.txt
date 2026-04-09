@@ -1,0 +1,8 @@
+# Core dependencies
+# argparse is part of Python standard library
+# colorama for cross-colored terminal output
+
+colorama>=0.4.6
+
+# Optional: For GPU acceleration via hashcat (external tool, not a Python package)
+# Users need to install hashcat separately: https://hashcat.net/hashcat/
