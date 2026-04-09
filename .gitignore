@@ -1,0 +1,31 @@
+# ── Python Cache ──────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+
+# ── Logs (auto-generated, no need to track) ───────────────
+logs/
+*.log
+*.json
+
+# ── Virtual Environment ───────────────────────────────────
+venv/
+.venv/
+env/
+
+# ── Sensitive / Environment Files ─────────────────────────
+.env
+*.key
+*.pem
+
+# ── OS Junk Files ─────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── IDE Settings ──────────────────────────────────────────
+.vscode/
+.idea/
+
+# ── Large Wordlists (keep only sample.txt) ────────────────
+wordlists/*.txt
+!wordlists/sample.txt
