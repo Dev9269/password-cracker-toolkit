@@ -19,10 +19,10 @@ class HashcatWrapper:
         Returns:
             str: Path to hashcat executable or None if not found
         """
-        # Common hashcat executable names
-        hashcat_names = ['hashcat', 'hashcat64.exe', 'hashcat32.exe']
+        # Common hashcat executable names across all platforms
+        hashcat_names = ['hashcat', 'hashcat.bin', 'hashcat64.bin', 'hashcat64.exe', 'hashcat32.exe']
         
-        # Check in PATH (cross-platform)
+        # Check in PATH (cross-platform: Windows uses 'where', Linux/macOS uses 'which')
         for name in hashcat_names:
             cmd = ['where', name] if os.name == 'nt' else ['which', name]
             try:

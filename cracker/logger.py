@@ -6,8 +6,6 @@ from datetime import datetime
 class PasswordLogger:
     """Handles logging of password cracking attempts and results."""
     
-    BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'logs'))
-
     def __init__(self, log_dir='logs'):
         """
         Initialize the logger.
@@ -15,10 +13,9 @@ class PasswordLogger:
         Args:
             log_dir (str): Directory to store log files
         """
-        resolved = os.path.abspath(log_dir)
-        if not resolved.startswith(self.BASE_DIR):
-            raise ValueError(f"log_dir must be inside {self.BASE_DIR}")
-        self.log_dir = resolved
+        # Resolve relative to cwd so it works on Windows, Linux, ChromeOS, Kali
+        self.log_dir = os.path.abspath(log_dir)
+        self.BASE_DIR = self.log_dir
         self.ensure_log_directory()
         
         # Setup logging

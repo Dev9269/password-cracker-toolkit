@@ -3,13 +3,6 @@
 Password Cracking & Analysis Toolkit
 A comprehensive tool for educational and authorized security testing purposes.
 
-This tool demonstrates various password cracking techniques including:
-- Dictionary attacks
-- Brute force attacks
-- Hybrid attacks
-- Rule-based attacks
-- GPU-accelerated cracking via hashcat integration
-
 WARNING: This tool is intended for educational and authorized security testing only.
 Unauthorized use is strictly prohibited and may violate laws and regulations.
 """
@@ -18,6 +11,11 @@ import argparse
 import logging
 import sys
 import os
+
+# Fix Windows terminal encoding (supports Windows, ChromeOS, Kali Linux)
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 from cracker.core_engine import CoreEngine
 from utils.formatter import Formatter
 
