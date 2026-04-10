@@ -6,24 +6,29 @@ Direct function calls for faster execution (no subprocess overhead)
 
 import hashlib
 import os
+import sys
 from cracker.core_engine import CoreEngine
 from cracker.hash_detector import HashDetector
 from utils.formatter import Formatter
 
+# Fix Windows terminal encoding for special characters
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
 def demo_attack(engine, hash_string, description, **kwargs):
     """Run a single demo attack."""
     print("\n" + "=" * 70)
-    print(f"🧪 {description}")
+    print(f"[TEST] {description}")
     print("=" * 70)
     
     result = engine.crack_hash(hash_string, **kwargs)
     
     if result['success']:
         masked_pwd = result['password'][0] + '*' * (len(result['password']) - 2) + result['password'][-1]
-        print(f"✅ SUCCESS | Password: {masked_pwd}")
+        print(f"[SUCCESS] Password: {masked_pwd}")
         print(f"   Time: {result['time_elapsed']:.2f}s | Attempts: {result['attempts']:,}")
     else:
-        print(f"❌ FAILED | {result.get('error', 'No password found')}")
+        print(f"[FAILED] {result.get('error', 'No password found')}")
     
     print()
 
@@ -75,8 +80,8 @@ def main():
     demo_attack(engine, 'invalidhash', "TEST 8: Error Handling", mode='brute')
     
     print("=" * 70)
-    print("✅ DEMO COMPLETE - All core functionality verified!")
-    print("📄 Detailed logs: logs/password_cracker_*.log")
+    print("[DONE] DEMO COMPLETE - All core functionality verified!")
+    print("[LOG] Detailed logs: logs/password_cracker_*.log")
     print("=" * 70)
 
 if __name__ == "__main__":
