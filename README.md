@@ -1,21 +1,17 @@
-# 🔐 Password Toolkit — Advanced Hash Cracking & Analysis Engine
+<div align="center">
 
-<p align="left">
-  <img src="https://img.shields.io/badge/Python-3.7%2B-3776AB?style=flat-square&logo=python" />
-  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" />
-  <img src="https://img.shields.io/badge/Status-Fully%20Operational-brightgreen?style=flat-square" />
-  <img src="https://img.shields.io/github/stars/Dev9269/password-cracker-toolkit?style=flat-square&label=Stars" />
-  <img src="https://img.shields.io/github/forks/Dev9269/password-cracker-toolkit?style=flat-square&label=Forks" />
-  <img src="https://img.shields.io/github/license/Dev9269/password-cracker-toolkit?style=flat-square" />
-</p>
+# 🔐 Password Cracker Toolkit
 
-> A powerful, modular password security toolkit built in Python — designed for ethical security research, penetration testing, and educational purposes.
+[![Stars](https://img.shields.io/github/stars/Dev9269/password-cracker-toolkit?style=flat-square&logo=github&color=gold)](https://github.com/Dev9269/password-cracker-toolkit)
+[![Forks](https://img.shields.io/github/forks/Dev9269/password-cracker-toolkit?style=flat-square&logo=github&color=blue)](https://github.com/Dev9269/password-cracker-toolkit/forks)
+[![License](https://img.shields.io/github/license/Dev9269/password-cracker-toolkit?style=flat-square&color=brightgreen)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=flat-square)](https://github.com/Dev9269/password-cracker-toolkit/pulls)
 
-![Python](https://img.shields.io/badge/Python-3.7%2B-blue?style=flat-square&logo=python)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Fully%20Operational-brightgreen?style=flat-square)
-![Tests](https://img.shields.io/badge/Tests-28%20Passed-success?style=flat-square)
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey?style=flat-square)
+A powerful, modular password security toolkit for ethical security research, penetration testing, and educational purposes.
+
+**Created by** [Jainam Maru](https://github.com/Dev9269)
+
+</div>
 
 ---
 
