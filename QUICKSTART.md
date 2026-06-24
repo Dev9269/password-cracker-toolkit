@@ -2,7 +2,11 @@
 
 ## ⚡ 5-Second Quick Start
 
+### Local
 ```bash
+# 0. Generate sample wordlist (first time only)
+python main.py --create-sample-wordlist
+
 # 1. Run the comprehensive demo (all tests)
 python demo.py
 
@@ -19,6 +23,16 @@ python main.py --hash 098f6bcd4621d373cade4e832627b4f6 \
 
 # 5. Help menu
 python main.py --help
+```
+
+### Docker
+```bash
+# Build the image
+docker build -t password-toolkit .
+
+# Run dictionary attack
+docker run -it --rm -v $(pwd)/wordlists:/app/wordlists password-toolkit \
+  --hash 5f4dcc3b5aa765d61d8327deb882cf99 --wordlist wordlists/sample.txt --mode dictionary
 ```
 
 ---
