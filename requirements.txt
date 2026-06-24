@@ -1,8 +1,18 @@
-# Core dependencies
-# argparse is part of Python standard library
-# colorama for cross-colored terminal output
+# ============================================================
+# Password Cracking & Analysis Toolkit - Python Dependencies
+# ============================================================
+# Install with: pip install -r requirements.txt
+#
+# Python stdlib modules used (no pip needed):
+#   - argparse, hashlib, itertools, logging, os, string, sys, time, json, re
 
-colorama>=0.4.6
+# ── Core ─────────────────────────────────────────────────────
+colorama>=0.4.6,<1.0          # Cross-platform colored terminal output
 
-# Optional: For GPU acceleration via hashcat (external tool, not a Python package)
-# Users need to install hashcat separately: https://hashcat.net/hashcat/
+# ── Optional: GPU Acceleration ──────────────────────────────
+# hashcat is a standalone tool: https://hashcat.net/hashcat/
+# For GPU support, install hashcat separately and use --gpu flag
+
+# ── Optional: Development ────────────────────────────────────
+# pytest>=7.0.0              # Uncomment for running tests
+# flake8>=6.0.0              # Uncomment for linting
