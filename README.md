@@ -1,5 +1,14 @@
 # 🔐 Password Toolkit — Advanced Hash Cracking & Analysis Engine
 
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3.7%2B-3776AB?style=flat-square&logo=python" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/Status-Fully%20Operational-brightgreen?style=flat-square" />
+  <img src="https://img.shields.io/github/stars/Dev9269/password-cracker-toolkit?style=flat-square&label=Stars" />
+  <img src="https://img.shields.io/github/forks/Dev9269/password-cracker-toolkit?style=flat-square&label=Forks" />
+  <img src="https://img.shields.io/github/license/Dev9269/password-cracker-toolkit?style=flat-square" />
+</p>
+
 > A powerful, modular password security toolkit built in Python — designed for ethical security research, penetration testing, and educational purposes.
 
 ![Python](https://img.shields.io/badge/Python-3.7%2B-blue?style=flat-square&logo=python)
@@ -226,6 +235,22 @@ Run tests yourself:
 ```bash
 python -m unittest discover -s tests -v
 python demo.py
+```
+
+---
+
+## 🐳 Docker Deployment
+
+```bash
+# Build the image
+docker build -t password-toolkit .
+
+# Run interactive session
+docker run -it --rm password-toolkit --help
+
+# Crack a hash with wordlist mounted from host
+docker run -it --rm -v $(pwd)/wordlists:/app/wordlists password-toolkit \
+  --hash 5f4dcc3b5aa765d61d8327deb882cf99 --wordlist wordlists/sample.txt --mode dictionary
 ```
 
 ---
