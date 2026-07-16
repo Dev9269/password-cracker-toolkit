@@ -1,5 +1,6 @@
 import re
 import hashlib
+import unicodedata
 
 
 class HashDetector:
@@ -94,11 +95,13 @@ class HashDetector:
         Returns:
             str: Hexadecimal hash string
         """
+        normalized = unicodedata.normalize("NFC", text)
+        encoded = normalized.encode("utf-8", errors="surrogatepass")
         if algorithm == "md5":
-            return hashlib.md5(text.encode(), usedforsecurity=False).hexdigest()
+            return hashlib.md5(encoded, usedforsecurity=False).hexdigest()
         elif algorithm == "sha1":
-            return hashlib.sha1(text.encode(), usedforsecurity=False).hexdigest()
+            return hashlib.sha1(encoded, usedforsecurity=False).hexdigest()
         elif algorithm == "sha256":
-            return hashlib.sha256(text.encode(), usedforsecurity=False).hexdigest()
+            return hashlib.sha256(encoded, usedforsecurity=False).hexdigest()
         else:
             raise ValueError(f"Unsupported algorithm: {algorithm}")
