@@ -82,6 +82,15 @@ Examples:
   
   # GPU-accelerated cracking (requires hashcat)
   python main.py --hash 5f4dcc3b5aa765d61d8327deb882cf99 --mode dictionary --gpu
+
+  # Batch mode: crack multiple hashes from a file
+  python main.py --hash-file hashes.txt --wordlist wordlists/sample.txt --mode dictionary
+  
+  # Batch mode with JSON export
+  python main.py --hash-file hashes.txt --wordlist wordlists/sample.txt --output results.json
+  
+  # Batch mode with CSV export
+  python main.py --hash-file hashes.txt --wordlist wordlists/sample.txt --output results.csv
         """,
     )
 
@@ -150,6 +159,18 @@ Examples:
     )
 
     parser.add_argument(
+        "--hash-file",
+        type=str,
+        help="Path to file containing hashes (one per line) for batch cracking",
+    )
+
+    parser.add_argument(
+        "--output",
+        type=str,
+        help="Export results to file (supports .json or .csv extension)",
+    )
+
+    parser.add_argument(
         "--create-sample-wordlist",
         action="store_true",
         help="Create a sample wordlist for demonstration purposes",
@@ -162,10 +183,35 @@ Examples:
         create_sample_wordlist()
         return
 
+    # Batch mode: crack multiple hashes from a file
+    if args.hash_file:
+        engine = CoreEngine()
+        Formatter.print_info("=" * 60)
+        Formatter.print_info("Password Cracking & Analysis Toolkit - Batch Mode")
+        Formatter.print_info("For educational and authorized security testing only")
+        Formatter.print_info("=" * 60)
+        print()
+
+        results = engine.crack_hashes_from_file(
+            hash_file_path=args.hash_file,
+            wordlist_path=args.wordlist,
+            mode=args.mode,
+            min_length=args.min_length,
+            max_length=args.max_length,
+            charset=args.charset,
+            use_gpu=args.gpu,
+            algo=args.algo,
+        )
+
+        if args.output:
+            output_format = "csv" if args.output.endswith(".csv") else "json"
+            engine.export_results(results, args.output, format=output_format)
+        return
+
     # Validate arguments
     if args.hash is None:
         Formatter.print_error(
-            "--hash is required unless --create-sample-wordlist is used"
+            "--hash is required unless --hash-file or --create-sample-wordlist is used"
         )
         sys.exit(1)
 
