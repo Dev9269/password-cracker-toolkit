@@ -58,6 +58,9 @@ def create_sample_wordlist():
         Formatter.print_info(f"Created sample wordlist at: {wordlist_path}")
 
 
+VERSION = "1.1.0"
+
+
 def main():
     """Main entry point for the password cracker toolkit."""
     parser = argparse.ArgumentParser(
@@ -176,7 +179,19 @@ Examples:
         help="Create a sample wordlist for demonstration purposes",
     )
 
+    parser.add_argument(
+        "--version",
+        action="store_true",
+        help="Show version information and exit",
+    )
+
     args = parser.parse_args()
+
+    # Show version and exit
+    if args.version:
+        print(f"Password Cracking & Analysis Toolkit v{VERSION}")
+        print("For educational and authorized security testing only.")
+        return
 
     # Create sample wordlist if requested
     if args.create_sample_wordlist:
