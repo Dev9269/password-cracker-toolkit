@@ -11,6 +11,6 @@ Modules:
 - utils: Helper utilities
 """
 
-__version__ = "1.0.0"
+__version__ = "2.0.0"
 __author__ = "Jainam Maru"
-__description__ = "Advanced Password Cracking & Analysis Toolkit"
+__description__ = "Advanced Password Cracking & Analysis Toolkit — 50+ hash algorithms, salt support, multi-candidate detection"

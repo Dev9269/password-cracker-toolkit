@@ -2,17 +2,28 @@ import os
 
 from cracker.hash_detector import HashDetector
 
+
 class DictionaryAttack:
     """Dictionary attack mode: compares hash against a wordlist."""
 
-    ALLOWED_BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'wordlists'))
+    ALLOWED_BASE_DIR = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "wordlists")
+    )
 
     def __init__(self):
         self.hash_detector = HashDetector()
-    
-    def attack(self, hash_string, hash_type, wordlist_path, increment_callback):
+
+    def attack(
+        self,
+        hash_string,
+        hash_type,
+        wordlist_path,
+        increment_callback,
+        salt=None,
+        salt_position="append",
+        **kwargs,
+    ):
         try:
-            # Support both absolute paths and relative paths inside wordlists/
             if os.path.isabs(wordlist_path):
                 safe_path = os.path.realpath(wordlist_path)
             else:
@@ -21,41 +32,35 @@ class DictionaryAttack:
                 )
                 allowed = os.path.realpath(self.ALLOWED_BASE_DIR)
                 if not safe_path.startswith(allowed + os.sep):
-                    return {'success': False, 'error': 'Access denied: wordlist path is outside the allowed directory'}
+                    return {
+                        "success": False,
+                        "error": "Access denied: wordlist path is outside the allowed directory",
+                    }
             if not os.path.isfile(safe_path):
-                return {'success': False, 'error': 'Wordlist file not found'}
-            with open(safe_path, 'r', encoding='utf-8', errors='ignore') as f:
+                return {"success": False, "error": "Wordlist file not found"}
+            with open(safe_path, "r", encoding="utf-8", errors="ignore") as f:
                 for line in f:
                     password = line.strip()
                     if not password:
                         continue
-                    
-                    # Increment attempt counter
                     increment_callback(1)
-                    
-                    # Hash the password
-                    hashed = self.hash_detector.hash_string(password, hash_type)
-                    
-                    # Compare
+                    if salt is not None:
+                        hashed = self.hash_detector.hash_string(
+                            password,
+                            hash_type,
+                            salt=salt,
+                            salt_position=salt_position,
+                            **kwargs,
+                        )
+                    else:
+                        hashed = self.hash_detector.hash_string(password, hash_type)
                     if hashed == hash_string:
-                        return {
-                            'success': True,
-                            'password': password,
-                            'attempts': 0  # Will be updated by caller
-                        }
-            
-            return {
-                'success': False,
-                'error': 'Password not found in wordlist'
-            }
-        
+                        return {"success": True, "password": password, "attempts": 0}
+            return {"success": False, "error": "Password not found in wordlist"}
         except FileNotFoundError:
-            return {
-                'success': False,
-                'error': 'Wordlist file not found'
-            }
+            return {"success": False, "error": "Wordlist file not found"}
         except (OSError, ValueError) as e:
             return {
-                'success': False,
-                'error': f'Error during dictionary attack: {str(e)}'
+                "success": False,
+                "error": f"Error during dictionary attack: {str(e)}",
             }

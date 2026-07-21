@@ -4,14 +4,24 @@
 # Install with: pip install -r requirements.txt
 #
 # Python stdlib modules used (no pip needed):
-#   - argparse, hashlib, itertools, logging, os, string, sys, time, json, re
+#   - argparse, hashlib, itertools, logging, os, string, sys, time,
+#     json, re, hmac, struct, zlib
 
 # ── Core ─────────────────────────────────────────────────────
 colorama>=0.4.6,<1.0          # Cross-platform colored terminal output
 
+# ── Slow KDF Support (required for bcrypt/Argon2/PBKDF2/crypt) ──
+passlib>=1.7.4,<2.0           # Password hashing library (bcrypt, scrypt, pbkdf2,
+                              #   phpass, django, ldap, unix crypt, and more)
+bcrypt>=4.0.0,<5.0            # bcrypt password hashing (used by passlib and standalone)
+argon2-cffi>=23.0.0,<24.0     # Argon2 password hashing (argon2i, argon2d, argon2id)
+
 # ── Optional: GPU Acceleration ──────────────────────────────
 # hashcat is a standalone tool: https://hashcat.net/hashcat/
 # For GPU support, install hashcat separately and use --gpu flag
+
+# ── Optional: LM hash computation ───────────────────────────
+# pycryptodome>=3.20.0        # Uncomment for LM hash support (DES encryption needed)
 
 # ── Optional: Development ────────────────────────────────────
 # pytest>=7.0.0              # Uncomment for running tests
