@@ -1,6 +1,8 @@
 class Formatter:
     """Utility for formatting output messages with colors and styles."""
     
+    no_color = False
+    
     # ANSI color codes
     COLORS = {
         'red': '\033[91m',
@@ -37,6 +39,9 @@ class Formatter:
         Returns:
             str: Formatted text
         """
+        if cls.no_color:
+            return text
+        
         formatted = ''
         if color and color in cls.COLORS:
             formatted += cls.COLORS[color]

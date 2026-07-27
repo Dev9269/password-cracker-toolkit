@@ -227,6 +227,11 @@ def build_parser():
     parser.add_argument(
         "-o", "--output-file", type=str, help="Output file for wordlist utilities"
     )
+    parser.add_argument(
+        "--no-color",
+        action="store_true",
+        help="Disable colored output",
+    )
 
     return parser
 
@@ -265,6 +270,9 @@ def handle_wordlist_utils(args):
 def main():
     parser = build_parser()
     args = parser.parse_args()
+
+    if args.no_color:
+        Formatter.no_color = True
 
     if args.version:
         print(f"Password Cracking & Analysis Toolkit v{VERSION}")
