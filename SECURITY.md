@@ -1,23 +1,35 @@
 # Security Policy
 
-## Supported Versions
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.x     | :white_check_mark: |
-| < 1.0   | :x:                |
-
-## Responsible Use
-
-This tool is designed for **educational purposes and authorized security testing only**. Using it against systems without explicit permission is illegal.
-
 ## Reporting a Vulnerability
 
-If you discover a vulnerability in this toolkit itself, please open an issue describing the problem. Do not use the vulnerability disclosure for malicious purposes.
+If you discover a security vulnerability in Password Cracker Toolkit, please report it privately.
 
-## Best Practices
+**Do not** open a public GitHub issue. Instead, send a detailed report to:
 
-- Always obtain written permission before testing
-- Use only on systems you own or have authorization to test
-- Never use cracked passwords for unauthorized access
-- Report found vulnerabilities through proper channels
+- **Email**: jainam.maru@example.com
+- **Alternative**: Use the [GitHub Security Advisory](https://github.com/Dev9269/password-cracker-toolkit/security/advisories/new) tab.
+
+Include the following in your report:
+
+- Type of vulnerability
+- Steps to reproduce
+- Affected version(s)
+- Any potential impact
+
+## Response Timeline
+
+- **Acknowledgment** within 48 hours.
+- We'll work with you to understand and validate the issue.
+- A fix will be shipped as soon as possible.
+- You'll be credited in the release notes (if desired).
+
+## Supported Versions
+
+| Version | Supported |
+| ------- | --------- |
+| latest  | ✅        |
+| older   | ❌        |
+
+## Scope
+
+This policy covers the source code in this repository. This tool is intended for authorized security testing only.
