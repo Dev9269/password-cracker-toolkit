@@ -114,12 +114,20 @@ password-toolkit/
 
 ### Prerequisites
 - Python 3.7 or higher
+- pip (Python package manager)
+- Git (for cloning)
 - [Hashcat](https://hashcat.net/hashcat/) *(optional, for GPU acceleration)*
 
 ### Setup
 ```bash
 git clone https://github.com/Dev9269/password-cracker-toolkit.git
 cd password-toolkit
+
+# (Recommended) Create and activate a virtual environment
+python -m venv venv
+# Windows: venv\Scripts\activate
+# macOS/Linux: source venv/bin/activate
+
 pip install -r requirements.txt
 python main.py --create-sample-wordlist
 ```
