@@ -558,5 +558,45 @@ class TestCisco7Decode(unittest.TestCase):
         self.assertIsNotNone(result)
 
 
+class TestFormatter(unittest.TestCase):
+    def test_format_text_color(self):
+        from utils.formatter import Formatter
+        Formatter.no_color = False
+        result = Formatter.format_text("hello", "red")
+        self.assertIn("\033[91m", result)
+        self.assertIn("hello", result)
+        self.assertIn("\033[0m", result)
+
+    def test_format_text_no_color(self):
+        from utils.formatter import Formatter
+        Formatter.no_color = True
+        result = Formatter.format_text("hello", "red")
+        self.assertEqual(result, "hello")
+
+    def test_format_text_bold(self):
+        from utils.formatter import Formatter
+        Formatter.no_color = False
+        result = Formatter.format_text("hello", bold=True)
+        self.assertIn("\033[1m", result)
+
+    def test_print_methods_respect_no_color(self):
+        import io, sys
+        from utils.formatter import Formatter
+        Formatter.no_color = True
+        captured = io.StringIO()
+        old = sys.stdout
+        sys.stdout = captured
+        try:
+            Formatter.print_success("test")
+            Formatter.print_error("test")
+            Formatter.print_warning("test")
+            Formatter.print_info("test")
+        finally:
+            sys.stdout = old
+        output = captured.getvalue()
+        self.assertNotIn("\033", output)
+        self.assertEqual(output.count("test"), 4)
+
+
 if __name__ == "__main__":
     unittest.main()
