@@ -1256,37 +1256,37 @@ class HashDetector:
 
     @classmethod
     def _mysql41_hash(cls, password):
-        step1 = hashlib.sha1(password.encode()).digest()
-        step2 = hashlib.sha1(step1).hexdigest().upper()
+        step1 = hashlib.sha1(password.encode(), usedforsecurity=False).digest()
+        step2 = hashlib.sha1(step1, usedforsecurity=False).hexdigest().upper()
         return "*" + step2
 
     @classmethod
     def _postgres_md5_hash(cls, password, username=""):
-        inner = hashlib.md5((password + username).encode()).hexdigest()
+        inner = hashlib.md5((password + username).encode(), usedforsecurity=False).hexdigest()
         return "md5" + inner
 
     @classmethod
     def _oracle10g_hash(cls, password):
         s = password.upper().encode("utf-8")
-        return hashlib.sha1(s).hexdigest().lower()
+        return hashlib.sha1(s, usedforsecurity=False).hexdigest().lower()
 
     @classmethod
     def _oracle11g_hash(cls, password, salt_hex):
         s = password.upper().encode("utf-8")
         s += bytes.fromhex(salt_hex)
-        h = hashlib.sha1(s).hexdigest().lower()
+        h = hashlib.sha1(s, usedforsecurity=False).hexdigest().lower()
         return h.upper() + salt_hex.upper()
 
     @classmethod
     def _mssql2000_hash(cls, password):
         pw_up = password.upper().encode("utf-16le")
-        return hashlib.sha1(pw_up).hexdigest()
+        return hashlib.sha1(pw_up, usedforsecurity=False).hexdigest()
 
     @classmethod
     def _mssql2005_hash(cls, password, salt_hex):
         pw_up = password.upper().encode("utf-16le")
         pw_up += bytes.fromhex(salt_hex)
-        return hashlib.sha1(pw_up).hexdigest()
+        return hashlib.sha1(pw_up, usedforsecurity=False).hexdigest()
 
     @classmethod
     def _mssql2008_hash(cls, password, salt_hex):
